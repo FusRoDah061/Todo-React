@@ -1,18 +1,21 @@
 import React from 'react';
-import TaskColumn from '../TaskColumn/TaskColumn.js';
+import TaskColumn from './TaskColumn';
+import NewTaskDialog from './NewTaskDialog';
 
-import * as Constants from '../../scripts/constants.js';
-import { TASKS_MOCK } from '../../scripts/mockData.js';
+import * as Constants from '../scripts/constants';
+import { TASKS_MOCK } from '../scripts/mockData';
 
 class AppContent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      tasks: TASKS_MOCK
+      tasks: TASKS_MOCK,
+      showDialog: false
     }
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleFinish = this.handleFinish.bind(this);
   }
 
   getTasksByState(status) {
@@ -22,19 +25,31 @@ class AppContent extends React.Component {
   }
 
   handleClick() {
-    alert('Criar nova tarefa');
+    this.setState({ showDialog:true });
+  }
+
+  handleFinish(task) {
+    const tasks = this.state.tasks.slice();
+
+    tasks.push(task);
+
+    this.setState({ tasks, showDialog:false });
   }
 
   render() {
+    const show = this.state.showDialog;
+
     return (
       <div className="app-content">
         <button onClick={this.handleClick}>New task</button>
 
-        <div class="task-columns">
+        <div className="task-columns">
           <TaskColumn title='To do' tasks={ this.getTasksByState(Constants.TASK_STATUS_TODO) }/>
           <TaskColumn title='Doing' tasks={ this.getTasksByState(Constants.TASK_STATUS_DOING) }/>
           <TaskColumn title='Done' tasks={ this.getTasksByState(Constants.TASK_STATUS_DONE) }/>
         </div>
+
+        <NewTaskDialog show={show} onFinish={this.handleFinish}/>
       </div>
     );
   }

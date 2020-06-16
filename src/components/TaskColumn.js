@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskList from '../TaskList/TaskList';
+import TaskList from './TaskList';
 
 function TaskColumn(props){
   return (

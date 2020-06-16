@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTitle from '../AppTitle/AppTitle.js';
+import AppTitle from './AppTitle';
 
 function AppHeader() {
   return (
