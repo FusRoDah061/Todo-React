@@ -5,6 +5,8 @@ import SubTaskForm from './SubTaskForm';
 
 import * as Constants from '../scripts/constants';
 
+import { v4 as uuidv4 } from 'uuid';
+
 class NewTaskDialog extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ class NewTaskDialog extends React.Component {
 
   handleFinish(){
     this.props.onFinish({
-      id:1,
+      id: uuidv4(),
       description: this.state.description,
       subtasks: this.state.subtasks,
       status:Constants.TASK_STATUS_TODO

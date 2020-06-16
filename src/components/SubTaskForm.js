@@ -1,8 +1,10 @@
 import React from 'react';
 import TextField from './TextField';
+import SubTaskList from './SubTaskList';
 
 import * as Constants from '../scripts/constants';
-import SubTaskList from './SubTaskList';
+
+import { v4 as uuidv4 } from 'uuid';
 
 class SubTaskForm extends React.Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class SubTaskForm extends React.Component {
   handleClick() {
     let subtasks = this.state.subtasks.slice();
     subtasks.push({
-      id:1,
+      id:uuidv4(),
       description: this.state.description,
       status:Constants.SUBTASK_STATUS_NOT_DONE
     });
