@@ -16,6 +16,7 @@ class AppContent extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleFinish = this.handleFinish.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   getTasksByState(status) {
@@ -36,6 +37,10 @@ class AppContent extends React.Component {
     this.setState({ tasks, showDialog:false });
   }
 
+  handleCancel() {
+    this.setState({ showDialog:false });
+  }
+
   render() {
     const show = this.state.showDialog;
 
@@ -49,7 +54,12 @@ class AppContent extends React.Component {
           <TaskColumn title='Done' tasks={ this.getTasksByState(Constants.TASK_STATUS_DONE) }/>
         </div>
 
-        <NewTaskDialog show={show} onFinish={this.handleFinish}/>
+        {
+          show &&
+          <NewTaskDialog 
+            onFinish={this.handleFinish}
+            onCancel={this.handleCancel}/>
+        }
       </div>
     );
   }

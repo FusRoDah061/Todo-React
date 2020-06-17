@@ -12,7 +12,8 @@ class SubTaskForm extends React.Component {
 
     this.state = {
       description: '',
-      subtasks: []
+      subtasks: [],
+      isDescriptionValid:true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,14 +32,20 @@ class SubTaskForm extends React.Component {
   }
 
   handleClick() {
+    if(!this.state.description || this.state.description === '') {
+      this.setState({isDescriptionValid:false});
+      return;
+    }
+
     let subtasks = this.state.subtasks.slice();
+
     subtasks.push({
       id:uuidv4(),
       description: this.state.description,
       status:Constants.SUBTASK_STATUS_NOT_DONE
     });
 
-    this.setState({ description: '', subtasks });
+    this.setState({ description: '', subtasks, isDescriptionValid:true });
 
     this.props.onChange({
       name: this.props.name,
@@ -48,18 +55,25 @@ class SubTaskForm extends React.Component {
 
   render() {
     return (
-      <div className='subtask-form'>
+      <div className={ `subtask-form ${this.props.isValid ? '' : 'subtask-form--invalid'}` }>
         <label>{ this.props.label }</label>
 
         <TextField
           label='Description'
           name={ this.props.name }
           value={ this.state.description }
-          onChange={ this.handleChange } />
+          onChange={ this.handleChange }
+          isValid={this.state.isDescriptionValid}
+          invalidMessage='Description is required.' />
 
-        <button onClick={ this.handleClick }>Confirm</button>
+        <button onClick={ this.handleClick }>Add</button>
 
-        <SubTaskList tasks={ this.state.subtasks }/>
+        <SubTaskList tasks={ this.props.value } />
+
+        {
+          !this.props.isValid &&
+          <p className='subtask-form-invalid-message'>{ this.props.invalidMessage }</p>
+        }
       </div>
     );
   }
