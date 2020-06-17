@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from './TextField';
-import SubTaskList from './SubTaskList';
+import StaticSubTaskList from './StaticSubTaskList';
 
 import * as Constants from '../scripts/constants';
 
@@ -68,7 +68,7 @@ class SubTaskForm extends React.Component {
 
         <button onClick={ this.handleClick }>Add</button>
 
-        <SubTaskList tasks={ this.props.value } />
+        <StaticSubTaskList tasks={ this.props.value } />
 
         {
           !this.props.isValid &&

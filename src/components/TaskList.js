@@ -1,12 +1,12 @@
 import React from 'react';
-import SubTaskList from './SubTaskList';
+import ToggleableSubTaskList from './ToggleableSubTaskList';
 
 function TaskList(props) {
   const taskItens = props.tasks.map((task) => {
     return (
       <li className='task-item' key={ task.id }>
         <p>{ task.description }</p>
-        <SubTaskList tasks={ task.subtasks }/>
+        <ToggleableSubTaskList tasks={ task.subtasks }/>
       </li>
     );
   });
