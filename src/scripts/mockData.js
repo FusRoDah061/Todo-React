@@ -5,6 +5,7 @@ export const TASKS_MOCK = [
     id:1,
     description:'Task #1',
     status:Constants.TASK_STATUS_TODO,
+    changedColumn:false,
     subtasks:[
       {
         id:1,
@@ -27,6 +28,7 @@ export const TASKS_MOCK = [
     id:2,
     description:'Task #2',
     status:Constants.TASK_STATUS_TODO,
+    changedColumn:false,
     subtasks:[
       {
         id:1,
@@ -49,6 +51,7 @@ export const TASKS_MOCK = [
     id:3,
     description:'Task #3',
     status:Constants.TASK_STATUS_DOING,
+    changedColumn:false,
     subtasks:[
       {
         id:1,
@@ -71,6 +74,7 @@ export const TASKS_MOCK = [
     id:4,
     description:'Task #4',
     status:Constants.TASK_STATUS_DONE,
+    changedColumn:false,
     subtasks:[
       {
         id:1,

@@ -6,7 +6,9 @@ function TaskColumn(props){
     <div className="task-column">
       <h2>{ props.title }</h2>
 
-      <TaskList tasks={ props.tasks } />
+      <TaskList 
+        tasks={ props.tasks } 
+        onTaskChange={ props.onTaskChange } />
     </div>
   );
 }
