@@ -68,7 +68,7 @@ class SubTaskForm extends React.Component {
 
         <button onClick={ this.handleClick }>Add</button>
 
-        <SubTaskList tasks={ this.props.value } disabled="true"/>
+        <SubTaskList tasks={ this.props.value } disabled={true}/>
 
         {
           !this.props.isValid &&

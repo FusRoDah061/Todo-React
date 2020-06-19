@@ -76,7 +76,6 @@ class AppContent extends React.Component {
     stateTask.status = this.getTaskStatus(stateTask);
     stateTask.changedColumn = (stateTaskStatus !== stateTask.status);
 
-    console.log(stateTask);
     this.setState(tasks);
   }
 

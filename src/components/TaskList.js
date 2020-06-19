@@ -1,15 +1,10 @@
 import React from 'react';
-import SubTaskList from './SubTaskList';
+import TaskItem from './TaskItem';
 
 function TaskList(props) {
   const taskItens = props.tasks.map((task) => {
     return (
-      <li className='task-item' key={ task.id }>
-        <p>{ task.description }</p>
-        <SubTaskList 
-          tasks={ task.subtasks } 
-          onTaskChange={ (subtask) => props.onTaskChange({ parent:task, subtask: subtask.subtask, checked: subtask.checked }) }/>
-      </li>
+      <TaskItem task={ task } onTaskChange={ props.onTaskChange }  key={ task.id }/>
     );
   });
   
