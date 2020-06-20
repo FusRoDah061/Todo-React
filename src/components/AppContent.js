@@ -2,22 +2,36 @@ import React from 'react';
 import TaskColumn from './TaskColumn';
 import NewTaskDialog from './NewTaskDialog';
 
+import StorageService from '../services/StorageService';
+
 import * as Constants from '../scripts/constants';
-import { TASKS_MOCK } from '../scripts/mockData';
 
 class AppContent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      tasks: TASKS_MOCK,
-      showDialog: false
-    }
-
     this.handleClick = this.handleClick.bind(this);
     this.handleFinish = this.handleFinish.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleTaskChange = this.handleTaskChange.bind(this);
+    this.handleStorageError = this.handleStorageError.bind(this);
+
+    this.storage = new StorageService('Tasks', this.handleStorageError);
+
+    this.state = {
+      tasks: [],
+      showDialog: false
+    }
+  }
+
+  componentDidMount() {
+    this.storage.getAll('id').then(tasks => {
+      this.setState({ tasks });
+    });
+  }
+
+  handleStorageError(event) {
+    console.log(event);
   }
 
   getTasksByState(status) {
@@ -32,11 +46,13 @@ class AppContent extends React.Component {
   }
 
   handleFinish(task) {
-    const tasks = this.state.tasks.slice();
-
-    tasks.push(task);
-
-    this.setState({ tasks, showDialog:false });
+    this.storage.put(task).then(key => {
+      if(key) {
+        const tasks = this.state.tasks.slice();
+        tasks.push(task);
+        this.setState({ tasks, showDialog:false });
+      }
+    });    
   }
 
   handleCancel() {
@@ -76,7 +92,10 @@ class AppContent extends React.Component {
     stateTask.status = this.getTaskStatus(stateTask);
     stateTask.changedColumn = (stateTaskStatus !== stateTask.status);
 
-    this.setState(tasks);
+    this.storage.put(stateTask).then(key => {
+      if(key)
+        this.setState(tasks);
+    });
   }
 
   render() {
