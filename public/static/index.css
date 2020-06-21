@@ -1,0 +1,26 @@
+html, body, #root {
+  display: block;
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.button {
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: .1s;
+}
+
+.button:hover {
+  background-color: var(--secondary-color--hover);
+}
+
+.button-lg {
+  font-weight: bold;
+  padding: 15px 30px;
+}

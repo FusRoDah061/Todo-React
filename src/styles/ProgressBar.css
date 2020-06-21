@@ -5,21 +5,13 @@
   height: 10px;
 }
 
-.progress-bar-container {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
-}
-
 .progress-bar-progress {
   display: block;
   position: relative;
   margin: 0px;
   width: 0px;
   height: 100%;
-  background-color: black;
+  background: var(--primary-gradient);
   transition-property: width;
   transition-duration: .3s;
 }

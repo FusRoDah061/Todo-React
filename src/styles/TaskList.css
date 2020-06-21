@@ -1,0 +1,14 @@
+.task-list-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.task-list {
+  transition: .5s;
+  padding: 15px;
+  padding-bottom: 0px;
+}
+
+.task-list:hover {
+  box-shadow: inset 0px 4px 12px -14px;
+}

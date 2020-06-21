@@ -1,0 +1,10 @@
+:root {
+  --primary-gradient: linear-gradient(#9400b2, #6600ff);
+  --primary-color: #9400b2;
+  --secondary-color: #f1f1f1;
+  --text-color: #4d4d4d;
+
+  --secondary-color--hover: #e7e7e7;
+
+  --font-family: sans-serif;
+}

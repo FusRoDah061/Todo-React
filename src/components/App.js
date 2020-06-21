@@ -1,10 +1,12 @@
 import React from 'react';
 import AppHeader from './AppHeader';
-import AppContent from './AppContent'
+import AppContent from './AppContent';
+
+import '../styles/App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <AppHeader />
       <AppContent />
     </div>

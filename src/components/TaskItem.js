@@ -1,7 +1,10 @@
 import React from 'react';
 import SubTaskList from './SubTaskList';
 import ProgressBar from './ProgressBar';
+
 import * as Constants from '../scripts/constants';
+
+import '../styles/TaskItem.css';
 
 class TaskItem extends React.Component {
   constructor(props) {

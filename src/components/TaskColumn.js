@@ -1,6 +1,8 @@
 import React from 'react';
 import TaskList from './TaskList';
 
+import '../styles/TaskColumn.css';
+
 function TaskColumn(props){
   return (
     <div className="task-column">

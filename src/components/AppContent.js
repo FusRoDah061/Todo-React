@@ -6,6 +6,8 @@ import StorageService from '../services/StorageService';
 
 import * as Constants from '../scripts/constants';
 
+import '../styles/AppContent.css';
+
 class AppContent extends React.Component {
   constructor(props) {
     super(props);
@@ -103,7 +105,7 @@ class AppContent extends React.Component {
 
     return (
       <div className="app-content">
-        <button onClick={this.handleClick}>New task</button>
+        <button className="button button-lg" onClick={this.handleClick}>New task</button>
 
         <div className="task-columns">
           <TaskColumn 

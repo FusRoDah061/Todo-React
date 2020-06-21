@@ -1,0 +1,12 @@
+.task-column {
+  background-color: var(--secondary-color);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.task-column > h2 {
+  margin: 15px;
+  font-size: 1.1em;
+  text-align: center;
+  text-transform: uppercase;
+}

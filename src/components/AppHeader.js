@@ -1,10 +1,11 @@
 import React from 'react';
-import AppTitle from './AppTitle';
+
+import '../styles/AppHeader.css';
 
 function AppHeader() {
   return (
     <div className="app-header">
-      <AppTitle />
+      <h1 className='app-title'>To-Do React</h1>
     </div>
   );
 }

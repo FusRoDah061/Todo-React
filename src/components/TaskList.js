@@ -1,6 +1,8 @@
 import React from 'react';
 import TaskItem from './TaskItem';
 
+import '../styles/TaskList.css';
+
 function TaskList(props) {
   const taskItens = props.tasks.map((task) => {
     return (
@@ -9,9 +11,11 @@ function TaskList(props) {
   });
   
   return (
-    <ul className='task-list'>
-      { taskItens }
-    </ul>
+    <div className='task-list-container'>
+      <ul className='task-list'>
+        { taskItens }
+      </ul>
+    </div>
   );
 }
 
