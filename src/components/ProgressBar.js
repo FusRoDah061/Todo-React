@@ -13,7 +13,7 @@ class ProgressBar extends React.Component {
     };
 
     return (
-      <div className="progress-bar" ref={ this.progressContainerRef }>
+      <div className="progress-bar">
         <div className="progress-bar-progress" style={styles}></div>
       </div>
     );

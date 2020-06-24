@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   flex: 1;
-  height: 100%;
+  height: calc(100% - 115px);
 }
 
 .app-content > .button {
@@ -19,4 +19,5 @@
   grid-gap: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  height: calc(100% - 125px);
 }

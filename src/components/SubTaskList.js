@@ -1,6 +1,8 @@
 import React from 'react';
 import SubTaskListItem from './SubTaskListItem';
 
+import '../styles/SubTaskList.css';
+
 function SubTaskList(props) {
   const subtaskItens = props.tasks.map((subtask) => {
     return <SubTaskListItem 

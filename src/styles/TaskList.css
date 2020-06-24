@@ -1,14 +1,17 @@
 .task-list-container {
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: calc(100% - 51px);
 }
 
 .task-list {
   transition: .5s;
   padding: 15px;
-  padding-bottom: 0px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  border-top: 1px solid var(--secondary-color);
 }
 
 .task-list:hover {
   box-shadow: inset 0px 4px 12px -14px;
+  border-top: 1px solid #ebebeb;
 }

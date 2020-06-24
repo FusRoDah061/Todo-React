@@ -1,12 +1,15 @@
 import React from 'react';
 import * as Constants from '../scripts/constants';
 
+import '../styles/SubTaskListItem.css';
+
 function SubTaskListItem(props) {
   const itemId = `js-subtask-${props.subtask.id}`;
+  const done = props.subtask.status === Constants.SUBTASK_STATUS_DONE;
 
   return (
     <li className='subtask-item' key={ props.subtask.id }>
-      <label htmlFor={ itemId }>
+      <label htmlFor={ itemId } title={ props.subtask.description } className={ done ? 'subtask-item--done' : '' }>
         <input id={ itemId }
           type='checkbox' 
           onChange={ (event) => { 
@@ -14,7 +17,7 @@ function SubTaskListItem(props) {
               props.onTaskChange({ checked: event.target.checked, subtask: props.subtask }) 
           }} 
           disabled={ props.disabled }
-          checked={ props.subtask.status === Constants.SUBTASK_STATUS_DONE } />
+          checked={ done } />
 
         { props.subtask.description }
       </label>

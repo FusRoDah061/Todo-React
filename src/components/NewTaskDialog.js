@@ -15,7 +15,9 @@ class NewTaskDialog extends React.Component {
       description:'',
       subtasks:[],
       isDescriptionValid:true,
-      isSubtasksValid:true
+      isSubtasksValid:true,
+      descriptionInvalidMessage: '',
+      subtasksInvalidMessage: ''
     }
 
     this.handleFinish = this.handleFinish.bind(this);
@@ -24,20 +26,27 @@ class NewTaskDialog extends React.Component {
 
   validateFields() {
     const { description, subtasks } = this.state;
-    let { isDescriptionValid, isSubtasksValid } = this.state;
+    let { isDescriptionValid, isSubtasksValid, descriptionInvalidMessage, subtasksInvalidMessage } = this.state;
 
     isDescriptionValid = true;
     isSubtasksValid = true;
 
     if(!description || description === '') {
-      isDescriptionValid = false
+      isDescriptionValid = false;
+      descriptionInvalidMessage = 'Description is required.';
     }
 
     if(!subtasks || subtasks.length <= 0) {
       isSubtasksValid = false;
+      subtasksInvalidMessage = 'At least one subtask is required.';
     }
 
-    this.setState({ isDescriptionValid, isSubtasksValid });
+    if(subtasks.length > 10) {
+      isSubtasksValid = false;
+      subtasksInvalidMessage = 'Maximum number of subtasks is 10.';
+    }
+
+    this.setState({ isDescriptionValid, isSubtasksValid, subtasksInvalidMessage, subtasksInvalidMessage });
 
     return isDescriptionValid && isSubtasksValid;
   }
@@ -89,16 +98,16 @@ class NewTaskDialog extends React.Component {
           name='description' 
           value={ this.state.description } 
           onChange={ this.handleChange }
-          isValid={this.state.isDescriptionValid}
-          invalidMessage='Description is required.' />
+          isValid={ this.state.isDescriptionValid }
+          invalidMessage={ this.state.descriptionInvalidMessage } />
 
         <SubTaskForm 
           label='Subtasks'
           name='subtasks'
           value={ this.state.subtasks }
           onChange={ this.handleChange }
-          isValid={this.state.isSubtasksValid}
-          invalidMessage='At least one subtask is required.' />
+          isValid={ this.state.isSubtasksValid }
+          invalidMessage={ this.state.subtasksInvalidMessage } />
 
       </Dialog>
     );

@@ -31,17 +31,17 @@ export const TASKS_MOCK = [
     changedColumn:false,
     subtasks:[
       {
-        id:1,
+        id:4,
         description:'SubTask #1',
         status:Constants.SUBTASK_STATUS_NOT_DONE
       },
       {
-        id:2,
+        id:5,
         description:'SubTask #2',
         status:Constants.SUBTASK_STATUS_NOT_DONE
       },
       {
-        id:3,
+        id:6,
         description:'SubTask #3',
         status:Constants.SUBTASK_STATUS_NOT_DONE
       }
@@ -54,17 +54,17 @@ export const TASKS_MOCK = [
     changedColumn:false,
     subtasks:[
       {
-        id:1,
+        id:7,
         description:'SubTask #1',
         status:Constants.SUBTASK_STATUS_DONE
       },
       {
-        id:2,
+        id:8,
         description:'SubTask #2',
         status:Constants.SUBTASK_STATUS_NOT_DONE
       },
       {
-        id:3,
+        id:9,
         description:'SubTask #3',
         status:Constants.SUBTASK_STATUS_NOT_DONE
       }
@@ -77,17 +77,17 @@ export const TASKS_MOCK = [
     changedColumn:false,
     subtasks:[
       {
-        id:1,
+        id:10,
         description:'SubTask #1',
         status:Constants.SUBTASK_STATUS_DONE
       },
       {
-        id:2,
+        id:11,
         description:'SubTask #2',
         status:Constants.SUBTASK_STATUS_DONE
       },
       {
-        id:3,
+        id:12,
         description:'SubTask #3',
         status:Constants.SUBTASK_STATUS_DONE
       }

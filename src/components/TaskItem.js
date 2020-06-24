@@ -9,6 +9,16 @@ import '../styles/TaskItem.css';
 class TaskItem extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      subtaskCollapse: true
+    }
+
+    this.toggleSubstaskList = this.toggleSubstaskList.bind(this);
+  }
+
+  toggleSubstaskList() {
+    this.setState({ subtaskCollapse: !this.state.subtaskCollapse });
   }
 
   getProgressBarValue() {
@@ -22,18 +32,22 @@ class TaskItem extends React.Component {
 
   render() {
     return (
-      <li className='task-item'>
-        <p>{ this.props.task.description }</p>
+      <li className={ this.props.task.changedColumn ? 'task-item task-item--moved' : 'task-item' }>
+        <span className={ this.state.subtaskCollapse ? 'task-item-arrow task-item-arrow--collapsed' : 'task-item-arrow' }>&#x1F53D;</span>
+        
+        <p className="task-item-title" title={ this.props.task.description } onClick={ this.toggleSubstaskList }>{ this.props.task.description }</p>
 
         <ProgressBar value={ this.getProgressBarValue() } max={ this.props.task.subtasks.length } />
 
-        <SubTaskList 
-          tasks={ this.props.task.subtasks } 
-          onTaskChange={ (subtask) => this.props.onTaskChange({ 
-            parent:this.props.task, 
-            subtask: subtask.subtask, 
-            checked: subtask.checked 
-          }) }/>
+        <div className={ this.state.subtaskCollapse ? 'subtasks subtasks--collapsed' : 'subtasks' }>
+          <SubTaskList
+            tasks={ this.props.task.subtasks } 
+            onTaskChange={ (subtask) => this.props.onTaskChange({ 
+              parent:this.props.task, 
+              subtask: subtask.subtask, 
+              checked: subtask.checked 
+            }) }/>
+        </div>
       </li>
     );
   }

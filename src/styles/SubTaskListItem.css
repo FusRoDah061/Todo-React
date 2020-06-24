@@ -1,0 +1,21 @@
+.subtask-item {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+.subtask-item:last-child {
+  margin: 0px;
+}
+
+.subtask-item > label {
+  cursor: pointer;
+}
+
+.subtask-item--done {
+  text-decoration: line-through;
+}
+
+.subtask-item input[type="checkbox"] {
+  margin-right: 6px;
+  cursor: pointer;
+}

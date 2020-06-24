@@ -1,0 +1,6 @@
+.subtask-list {
+  padding: 10px 8px;
+  background: var(--secondary-color--hover);
+  box-shadow: inset 0px 4px 12px -14px;
+  overflow: hidden;
+}
