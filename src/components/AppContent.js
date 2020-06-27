@@ -105,19 +105,19 @@ class AppContent extends React.Component {
 
     return (
       <div className="app-content">
-        <button className="button button-lg" onClick={this.handleClick}>New task</button>
+        <button className="button button-lg" onClick={this.handleClick}>&#x1F4CC; New task</button>
 
         <div className="task-columns">
           <TaskColumn 
-            title='To do' 
+            title='&#x1F4CC; To do' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_TODO) } 
             onTaskChange={ this.handleTaskChange }/>
           <TaskColumn 
-            title='Doing' 
+            title='&#x1F6E0; Doing' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_DOING) } 
             onTaskChange={ this.handleTaskChange }/>
           <TaskColumn 
-            title='Done' 
+            title='&#x2705; Done' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_DONE) } 
             onTaskChange={ this.handleTaskChange }/>
         </div>
