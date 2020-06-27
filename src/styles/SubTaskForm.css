@@ -1,0 +1,17 @@
+.subtask-form-add-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.subtask-form-add-wrapper .input {
+  flex: 1;
+}
+
+.subtask-form-add-wrapper .input .input-label{
+  margin: 0px;
+}
+
+.subtask-form-add-wrapper > .button {
+  margin-left: 5px;
+}

@@ -6,6 +6,9 @@ import * as Constants from '../scripts/constants';
 
 import { v4 as uuidv4 } from 'uuid';
 
+import '../styles/Input.css';
+import '../styles/SubTaskForm.css';
+
 class SubTaskForm extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +40,11 @@ class SubTaskForm extends React.Component {
       return;
     }
 
+    /*if(subtasks.length > 10) {
+      isSubtasksValid = false;
+      subtasksInvalidMessage = 'Maximum number of subtasks is 10.';
+    }*/
+
     let subtasks = this.state.subtasks.slice();
 
     subtasks.push({
@@ -55,24 +63,31 @@ class SubTaskForm extends React.Component {
 
   render() {
     return (
-      <div className={ `subtask-form ${this.props.isValid ? '' : 'subtask-form--invalid'}` }>
-        <label>{ this.props.label }</label>
+      <div className={ `input ${this.props.isValid ? '' : 'input--invalid'}` }>
+        <label className='input-label label-with-hint'>{ this.props.label }</label>
+        <p className='input-hint'>Type the subtask description and click "Add".</p>
 
-        <TextField
-          label='Description'
-          name={ this.props.name }
-          value={ this.state.description }
-          onChange={ this.handleChange }
-          isValid={this.state.isDescriptionValid}
-          invalidMessage='Description is required.' />
+        <div className='subtask-form-add-wrapper'>
+          <TextField
+            placeholder='Subtask description'
+            name={ this.props.name }
+            value={ this.state.description }
+            onChange={ this.handleChange }
+            isValid={this.state.isDescriptionValid}
+            invalidMessage='Description is required.' />
 
-        <button onClick={ this.handleClick }>Add</button>
+          <button className='button button-primary' onClick={ this.handleClick }>Add</button>
+        </div>
+
+        <p className='input-hint'>Maximum number of subtasks is 10.</p>
 
         <SubTaskList tasks={ this.props.value } disabled={true}/>
 
+        <p className='input-hint'>Click on an item to remove it.</p>
+
         {
           !this.props.isValid &&
-          <p className='subtask-form-invalid-message'>{ this.props.invalidMessage }</p>
+          <p className='input-invalid-message'>{ this.props.invalidMessage }</p>
         }
       </div>
     );

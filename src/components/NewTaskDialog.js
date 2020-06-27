@@ -46,7 +46,7 @@ class NewTaskDialog extends React.Component {
       subtasksInvalidMessage = 'Maximum number of subtasks is 10.';
     }
 
-    this.setState({ isDescriptionValid, isSubtasksValid, subtasksInvalidMessage, subtasksInvalidMessage });
+    this.setState({ isDescriptionValid, isSubtasksValid, subtasksInvalidMessage, descriptionInvalidMessage });
 
     return isDescriptionValid && isSubtasksValid;
   }
@@ -88,13 +88,13 @@ class NewTaskDialog extends React.Component {
   render() {
     return (
       <Dialog 
-        title='Add a new task'
+        title='&#x1F4DD; Add a new task'
         onFinish={ this.handleFinish }
         onCancel={ this.props.onCancel }
         show={ this.props.show }>
 
         <TextField 
-          label='Description' 
+          label='Task description' 
           name='description' 
           value={ this.state.description } 
           onChange={ this.handleChange }

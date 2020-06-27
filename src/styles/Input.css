@@ -1,0 +1,39 @@
+.input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input .input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input .input-target {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 5px;
+  border: none;
+  border-bottom: 1px solid #bbbbbb;
+  box-shadow: 0px 1px 4px -3px;
+}
+
+.label-with-hint {
+  margin: 0 !important;
+}
+
+.input-hint {
+  color: var(--input-hint-color);
+  font-size: .8rem;
+  margin-bottom: 5px;
+}
+
+.input--invalid > .input-target {
+  border: 1px solid var(--error-red);
+}
+
+.input-invalid-message {
+  color: var(--error-red);
+  font-size: .8rem;
+}

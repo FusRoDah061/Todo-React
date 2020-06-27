@@ -22,7 +22,7 @@ class AppContent extends React.Component {
 
     this.state = {
       tasks: [],
-      showDialog: false
+      showDialog: true
     }
   }
 
@@ -105,7 +105,7 @@ class AppContent extends React.Component {
 
     return (
       <div className="app-content">
-        <button className="button button-lg" onClick={this.handleClick}>&#x1F4CC; New task</button>
+        <button className="button button-secondary button-lg" onClick={this.handleClick}>&#x1F4CC; New task</button>
 
         <div className="task-columns">
           <TaskColumn 

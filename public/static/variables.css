@@ -3,8 +3,13 @@
   --primary-color: #9400b2;
   --secondary-color: #f1f1f1;
   --text-color: #4d4d4d;
+  --input-hint-color: #6d6d6d;
 
   --secondary-color--hover: #e7e7e7;
+  --primary-color--hover: #7b0094;
+  --faded-background: rgba(0, 0, 0, 0.4);
+
+  --error-red: #ff1a1a;
 
   --font-family: sans-serif;
 }
