@@ -22,6 +22,7 @@ class NewTaskDialog extends React.Component {
 
     this.handleFinish = this.handleFinish.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleRemoveSubtask = this.handleRemoveSubtask.bind(this);
   }
 
   validateFields() {
@@ -85,6 +86,20 @@ class NewTaskDialog extends React.Component {
     };
   }
 
+  handleRemoveSubtask(subtask) {
+    console.log(subtask);
+
+    let subtasks = this.state.subtasks.slice();
+    let indexToRemove = this.state.subtasks.findIndex(item => {
+      return item.id === subtask.id;
+    });
+    console.log(indexToRemove);
+
+    subtasks.splice(indexToRemove, 1);
+
+    this.setState({ subtasks });
+  }
+
   render() {
     return (
       <Dialog 
@@ -106,6 +121,7 @@ class NewTaskDialog extends React.Component {
           name='subtasks'
           value={ this.state.subtasks }
           onChange={ this.handleChange }
+          onRemoveSubtask={ this.handleRemoveSubtask }
           isValid={ this.state.isSubtasksValid }
           invalidMessage={ this.state.subtasksInvalidMessage } />
 

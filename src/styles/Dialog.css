@@ -18,10 +18,9 @@
   box-shadow: 0px 0px 12px -6px black;
   border-radius: 2px;
   max-width: 80%;
-  max-height: 70%;
   margin: auto;
   width: 50%;
-  height: 65%;
+  min-height: 65%;
   padding: 0px 30px;
 }
 

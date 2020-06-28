@@ -8,8 +8,10 @@ function SubTaskList(props) {
     return <SubTaskListItem 
               subtask={ subtask } 
               onTaskChange={ props.onTaskChange } 
+              onRemove={ props.onRemove }
               disabled={ props.disabled }
-              key={ subtask.id } />;
+              key={ subtask.id }
+              removable={ props.removableItems } />;
   });
   
   return (

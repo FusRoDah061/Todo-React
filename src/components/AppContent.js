@@ -22,7 +22,7 @@ class AppContent extends React.Component {
 
     this.state = {
       tasks: [],
-      showDialog: true
+      showDialog: false
     }
   }
 

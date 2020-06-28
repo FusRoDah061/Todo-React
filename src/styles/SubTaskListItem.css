@@ -19,3 +19,9 @@
   margin-right: 6px;
   cursor: pointer;
 }
+
+.subtask-item-remove {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px 8px 0px 0px;
+}

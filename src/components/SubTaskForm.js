@@ -15,8 +15,8 @@ class SubTaskForm extends React.Component {
 
     this.state = {
       description: '',
-      subtasks: [],
-      isDescriptionValid:true
+      isDescriptionValid:true,
+      validationErrorMessage: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,18 +34,30 @@ class SubTaskForm extends React.Component {
     }
   }
 
-  handleClick() {
+  validateFields() {
     if(!this.state.description || this.state.description === '') {
-      this.setState({isDescriptionValid:false});
-      return;
+      this.setState({
+        isDescriptionValid:false,
+        validationErrorMessage:'Description is required.'
+      });
+      return false;
     }
 
-    /*if(subtasks.length > 10) {
-      isSubtasksValid = false;
-      subtasksInvalidMessage = 'Maximum number of subtasks is 10.';
-    }*/
+    if(this.props.value.length >= 10) {
+      this.setState({
+        isDescriptionValid:false,
+        validationErrorMessage:'There are 10 subtasks already.'
+      });
+      return false;
+    }
 
-    let subtasks = this.state.subtasks.slice();
+    return true;
+  }
+
+  handleClick() {
+    if(!this.validateFields()) return;
+
+    let subtasks = this.props.value.slice();
 
     subtasks.push({
       id:uuidv4(),
@@ -53,7 +65,7 @@ class SubTaskForm extends React.Component {
       status:Constants.SUBTASK_STATUS_NOT_DONE
     });
 
-    this.setState({ description: '', subtasks, isDescriptionValid:true });
+    this.setState({ description: '', isDescriptionValid:true });
 
     this.props.onChange({
       name: this.props.name,
@@ -74,16 +86,20 @@ class SubTaskForm extends React.Component {
             value={ this.state.description }
             onChange={ this.handleChange }
             isValid={this.state.isDescriptionValid}
-            invalidMessage='Description is required.' />
+            invalidMessage={ this.state.validationErrorMessage } />
 
           <button className='button button-primary' onClick={ this.handleClick }>Add</button>
         </div>
 
         <p className='input-hint'>Maximum number of subtasks is 10.</p>
 
-        <SubTaskList tasks={ this.props.value } disabled={true}/>
+        <SubTaskList 
+          tasks={ this.props.value } 
+          disabled={true} 
+          removableItems={true}
+          onRemove={ this.props.onRemoveSubtask }/>
 
-        <p className='input-hint'>Click on an item to remove it.</p>
+        <p className='input-hint'>Click the red 'X' to remove an item.</p>
 
         {
           !this.props.isValid &&

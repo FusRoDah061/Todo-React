@@ -9,7 +9,14 @@ function SubTaskListItem(props) {
 
   return (
     <li className='subtask-item' key={ props.subtask.id }>
-      <label htmlFor={ itemId } title={ props.subtask.description } className={ done ? 'subtask-item--done' : '' }>
+      { props.removable &&
+        <button className='button subtask-item-remove' onClick={ () => { if(props.removable) props.onRemove(props.subtask) } }>&#x274C;</button>
+      }
+
+      <label 
+        htmlFor={ itemId } 
+        title={ props.subtask.description } 
+        className={ done ? 'subtask-item--done' : '' }>
         <input id={ itemId }
           type='checkbox' 
           onChange={ (event) => { 
