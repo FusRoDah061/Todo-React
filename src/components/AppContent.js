@@ -17,17 +17,23 @@ class AppContent extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleTaskChange = this.handleTaskChange.bind(this);
     this.handleStorageError = this.handleStorageError.bind(this);
+    this.handleEditTask = this.handleEditTask.bind(this);
+    this.handleDeleteTask = this.handleDeleteTask.bind(this);
 
     this.storage = new StorageService('Tasks', this.handleStorageError);
 
     this.state = {
       tasks: [],
-      showDialog: false
+      showDialog: false,
+      taskToEdit: null
     }
   }
 
   componentDidMount() {
     this.storage.getAll('id').then(tasks => {
+      tasks.forEach(task => {
+        task.changedColumn = false;
+      });
       this.setState({ tasks });
     });
   }
@@ -48,13 +54,29 @@ class AppContent extends React.Component {
   }
 
   handleFinish(task) {
-    this.storage.put(task).then(key => {
-      if(key) {
-        const tasks = this.state.tasks.slice();
-        tasks.push(task);
-        this.setState({ tasks, showDialog:false });
-      }
-    });    
+    if(!this.state.taskToEdit) {
+      // Creating a new task
+      this.storage.put(task).then(key => {
+        if(key) {
+          const tasks = this.state.tasks.slice();
+          tasks.push(task);
+          this.setState({ tasks, showDialog:false });
+        }
+      });    
+    }
+    else {
+      // Updating existing task
+      this.updateTaskStatus(task);
+
+      this.storage.put(task).then(key => {
+        if(key) {
+          const tasks = this.state.tasks.slice();
+          let index = tasks.findIndex(t => t.id === key);    
+          tasks[index] = task;
+          this.setState({ tasks, showDialog:false });
+        }
+      });
+    }
   }
 
   handleCancel() {
@@ -77,6 +99,12 @@ class AppContent extends React.Component {
       return Constants.TASK_STATUS_DOING;
   }
 
+  updateTaskStatus(task) {
+    const taskStatus = task.status;
+    task.status = this.getTaskStatus(task);
+    task.changedColumn = (taskStatus !== task.status);
+  }
+
   handleTaskChange(task) {
     let tasks = this.state.tasks.slice();
 
@@ -90,14 +118,20 @@ class AppContent extends React.Component {
 
     subtask.status = (task.checked ? Constants.SUBTASK_STATUS_DONE : Constants.SUBTASK_STATUS_NOT_DONE);
         
-    const stateTaskStatus = stateTask.status;
-    stateTask.status = this.getTaskStatus(stateTask);
-    stateTask.changedColumn = (stateTaskStatus !== stateTask.status);
+    this.updateTaskStatus(stateTask);
 
     this.storage.put(stateTask).then(key => {
       if(key)
         this.setState(tasks);
     });
+  }
+
+  handleEditTask(task) {
+    this.setState({ showDialog:true, taskToEdit: task });
+  }
+
+  handleDeleteTask(task) {
+    console.log(task);
   }
 
   render() {
@@ -111,20 +145,27 @@ class AppContent extends React.Component {
           <TaskColumn 
             title='&#x1F4CC; To do' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_TODO) } 
-            onTaskChange={ this.handleTaskChange }/>
+            onTaskChange={ this.handleTaskChange }
+            onEditTask={ this.handleEditTask }
+            onDeleteTask={ this.handleDeleteTask } />
           <TaskColumn 
-            title='&#x1F6E0; Doing' 
+            title='&#x23F3; Doing' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_DOING) } 
-            onTaskChange={ this.handleTaskChange }/>
+            onTaskChange={ this.handleTaskChange }
+            onEditTask={ this.handleEditTask }
+            onDeleteTask={ this.handleDeleteTask } />
           <TaskColumn 
             title='&#x2705; Done' 
             tasks={ this.getTasksByState(Constants.TASK_STATUS_DONE) } 
-            onTaskChange={ this.handleTaskChange }/>
+            onTaskChange={ this.handleTaskChange }
+            onEditTask={ this.handleEditTask }
+            onDeleteTask={ this.handleDeleteTask } />
         </div>
 
         {
           show &&
           <NewTaskDialog 
+            task={this.state.taskToEdit}
             onFinish={this.handleFinish}
             onCancel={this.handleCancel}/>
         }

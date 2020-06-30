@@ -25,6 +25,16 @@ class NewTaskDialog extends React.Component {
     this.handleRemoveSubtask = this.handleRemoveSubtask.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.task) {
+      //Editing a task
+      this.setState({ 
+        description: this.props.task.description,
+        subtasks: this.props.task.subtasks
+      });
+    }
+  }
+
   validateFields() {
     const { description, subtasks } = this.state;
     let { isDescriptionValid, isSubtasksValid, descriptionInvalidMessage, subtasksInvalidMessage } = this.state;
@@ -58,10 +68,10 @@ class NewTaskDialog extends React.Component {
     if(!this.validateFields()) return;
    
     this.props.onFinish({
-      id: uuidv4(),
+      id: this.props.task ? this.props.task.id : uuidv4(),
       description: description,
       subtasks: subtasks,
-      status:Constants.TASK_STATUS_TODO
+      status: this.props.task ? this.props.task.status : Constants.TASK_STATUS_TODO
     });
 
     this.setState({

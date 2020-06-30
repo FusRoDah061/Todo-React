@@ -39,6 +39,12 @@ class TaskItem extends React.Component {
 
         <ProgressBar value={ this.getProgressBarValue() } max={ this.props.task.subtasks.length } />
 
+        <div className='task-item-options'>
+          <span>&#x1F6E0;</span>
+          <button className='button' onClick={ () => this.props.onEdit(this.props.task) }>&#x270D; Editar</button>
+          <button className='button' onClick={ () => this.props.onDelete(this.props.task) }>&#x1F5D1; Excluir</button>
+        </div>
+
         <div className={ this.state.subtaskCollapse ? 'subtasks subtasks--collapsed' : 'subtasks' }>
           <SubTaskList
             tasks={ this.props.task.subtasks } 

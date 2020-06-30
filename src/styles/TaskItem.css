@@ -40,6 +40,7 @@
   height: 5px;
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
+  z-index: 1;
 }
 
 .task-item > .progress-bar .progress-bar-progress {
@@ -47,11 +48,47 @@
   border-top-right-radius: 2px;
 }
 
+.task-item-options {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 30px auto auto;
+  grid-gap: 5px;
+  width: 30px;
+  top: 0px;
+  right: 0px;
+  height: 38px;
+  background-color: var(--secondary-color--hover);
+  overflow: hidden;
+  transition: width .2s;
+  padding-top: 5px;
+}
+
+.task-item-options > span {
+  font-size: .7rem;
+  height: 33px;
+  line-height: 33px;
+  text-align: center;
+}
+
+.task-item-options:hover {
+  width: 170px;
+}
+
+.task-item-options > .button {
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+  font-size: .7rem;
+  height: 33px;
+  line-height: 33px;
+  text-align: center;
+}
+
 .task-item--moved {
-  animation-name: blink;
+  animation-name: come-up;
   animation-fill-mode: forwards;
-  animation-duration: .6s;
-  animation-timing-function: ease-out;
+  animation-duration: .25s;
+  animation-timing-function: cubic-bezier(0.34, 0.95, 0.32, 1.28);
 }
 
 .subtasks {
@@ -65,14 +102,14 @@
   max-height: 0px;
 }
 
-@keyframes blink {
+@keyframes come-up {
   from {
-    bottom: -10px;
+    top: -15px;
     background-color: var(--secondary-color--hover);
   }
 
   to {
-    bottom: 0px;
+    top: 0px;
     background-color: var(--secondary-color);
   }
 }

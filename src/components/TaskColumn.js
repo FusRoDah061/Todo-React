@@ -10,7 +10,9 @@ function TaskColumn(props){
 
       <TaskList 
         tasks={ props.tasks } 
-        onTaskChange={ props.onTaskChange } />
+        onTaskChange={ props.onTaskChange }
+        onEditTask={ props.onEditTask }
+        onDeleteTask={ props.onDeleteTask } />
     </div>
   );
 }

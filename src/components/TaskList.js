@@ -6,7 +6,12 @@ import '../styles/TaskList.css';
 function TaskList(props) {
   const taskItens = props.tasks.map((task) => {
     return (
-      <TaskItem task={ task } onTaskChange={ props.onTaskChange }  key={ task.id }/>
+      <TaskItem
+        task={ task } 
+        onTaskChange={ props.onTaskChange } 
+        onEdit={ props.onEditTask }
+        onDelete={ props.onDeleteTask }
+        key={ task.id }/>
     );
   });
   
