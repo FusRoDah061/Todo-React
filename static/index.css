@@ -1,0 +1,42 @@
+html, body, #root {
+  display: block;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.button {
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: .1s;
+  padding: 8px 16px;
+}
+
+.button-primary {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.button-primary:hover {
+  background-color: var(--primary-color--hover);
+}
+
+.button-secondary {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.button-secondary:hover {
+  background-color: var(--secondary-color--hover);
+}
+
+.button-lg {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 15px 30px;
+}
