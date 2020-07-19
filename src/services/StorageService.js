@@ -22,11 +22,11 @@ export default class StorageService {
   }
 
   delete(key) {
-    return this.delete(key);
+    return this.storageEngine.delete(key);
   }
 
   deleteAll() {
-    return this.deleteAll();
+    return this.storageEngine.deleteAll();
   }
   
 }

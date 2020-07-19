@@ -131,7 +131,17 @@ class AppContent extends React.Component {
   }
 
   handleDeleteTask(task) {
-    console.log(task);
+    this.storage.delete(task.id).then(() => {
+      let tasks = this.state.tasks.slice();
+
+      let indexToRemove = tasks.findIndex(t => {
+        return t.id === task.id;
+      });
+
+      tasks.splice(indexToRemove, 1);
+     
+      this.setState({ tasks });
+    });
   }
 
   render() {
